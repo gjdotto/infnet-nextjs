@@ -10,11 +10,9 @@ export function MenuBarItems() {
 
   return (
     <div className="menu-bar-items">
-      <span className="item">
-      <Link href="/contact" title="Formulário de contato">
+      <a className="item" href="/contact" title="Formulário de contato">
         <RiContactsBookFill size="25px" aria-label="Contato" />
-      </Link>
-      </span>
+      </a>
       {status === "authenticated" && (
         <>
           <a
@@ -28,6 +26,16 @@ export function MenuBarItems() {
           >
             <ImExit size="25px" aria-label="Sair" />
           </a>
+          <a className="item">
+            <a href={"/user/profile"}>
+              <Perfil
+                size={30}
+                name={data?.user.name}
+                src={undefined}
+                alt=""
+              />
+            </a>
+          </a>
         </>
       )}
       {status === "unauthenticated" && (
@@ -35,24 +43,12 @@ export function MenuBarItems() {
           <a className="item" href="/api/auth/signin" title="Login">
             <RiLoginCircleFill size="25px" aria-label="Login" />
           </a>
-          <span className="item">
-
-          <Link className="item" href="/signup" title="Registrar">
+          <a className="item" href="/signup" title="Registrar">
             <FaUserPlus size="25px" aria-label="Registrar usuário" />
-          </Link>
-          </span>
+          </a>
         </>
       )}
-      <span className="item">
-        <Link href={data?.user ? "/user/profile" : "/signup"}>
-          <Perfil
-            size={30}
-            name={data?.user.name}
-            src={data?.user.name ? undefined : "/avatar.jpeg"}
-            alt=""
-          />
-        </Link>
-      </span>
+
       <style jsx>{`
         .menu-bar-items {
           display: flex;
